@@ -42,32 +42,109 @@ int main()
     // Sugestão: Expanda o tabuleiro para uma matriz 10x10.
     // Sugestão: Posicione quatro navios no tabuleiro, incluindo dois na diagonal.
     // Sugestão: Exiba o tabuleiro completo no console, mostrando 0 para posições vazias e 3 para posições ocupadas.
-    int tabuleiro[10][10];
+    // int tabuleiro[10][10];
+
+    // for (int i = 0; i < 10; i++)
+    // {
+    //     for (int j = 0; j < 10; j++)
+    //     {
+    //         tabuleiro[i][j] = 0;
+    //     }
+    //     printf("\n");
+    // }
+
+    // tabuleiro[0][0] = 3;
+    // tabuleiro[0][1] = 3;
+    // tabuleiro[0][2] = 3;
+
+    // tabuleiro[2][0] = 3;
+    // tabuleiro[3][1] = 3;
+    // tabuleiro[4][2] = 3;
+
+    // tabuleiro[7][4] = 3;
+    // tabuleiro[8][3] = 3;
+    // tabuleiro[9][2] = 3;
+
+    // tabuleiro[9][9] = 3;
+    // tabuleiro[8][9] = 3;
+    // tabuleiro[7][9] = 3;
+
+    // for (int i = 0; i < 10; i++)
+    // {
+    //     for (int j = 0; j < 10; j++)
+    //     {
+    //         printf("%d  ", tabuleiro[i][j]);
+    //     }
+    //     printf("\n");
+    // }
+
+    // Nível Mestre - Habilidades Especiais com Matrizes
+    // Sugestão: Crie matrizes para representar habilidades especiais como cone, cruz, e octaedro.
+    // Sugestão: Utilize estruturas de repetição aninhadas para preencher as áreas afetadas por essas habilidades no tabuleiro.
+    // Sugestão: Exiba o tabuleiro com as áreas afetadas, utilizando 0 para áreas não afetadas e 1 para áreas atingidas.
+    int tabuleiro[10][10] = {0};
+    int tamanhoCone = 1;
 
     for (int i = 0; i < 10; i++)
     {
         for (int j = 0; j < 10; j++)
         {
-            tabuleiro[i][j] = 0;
+            // adiciona o cone
+            if (i == 1 && j == 2)
+            {
+                tabuleiro[i][j] = 1;
+                for (int k = 1; k < 3; k++)
+                {
+                    tabuleiro[i + k][j] = 1;
+                    for (int l = 1; l <= k; l++)
+                    {
+                        tabuleiro[i + k][j + l] = 1;
+                        tabuleiro[i + k][j - l] = 1;
+                    }
+                }
+            }
+
+            // adiciona a cruz
+            if (i == 0 && j == 7)
+            {
+                tabuleiro[i][j] = 1;
+                for (int k = 1; k < 5; k++)
+                {
+                    tabuleiro[i + k][j] = 1;
+                    if (k == 2)
+                    {
+                        for (int l = 1; l < 3; l++)
+                        {
+                            tabuleiro[i + k][j + l] = 1;
+                            tabuleiro[i + k][j - l] = 1;
+                        }
+                    }
+                }
+            }
+
+            // adiciona o octaedro
+            if (i == 5 && j == 4)
+            {
+                int meio = 2;
+                tabuleiro[i][j] = 1;
+                for (int k = 1; k < 5; k++)
+                {
+                    tabuleiro[i + k][j] = 1;
+                    for (int l = 1; l <= k && k <= meio; l++)
+                    {
+                        tabuleiro[i + k][j + l] = 1;
+                        tabuleiro[i + k][j - l] = 1;
+                    }
+
+                    if(k == 3){
+                         tabuleiro[i + k][j + 1] = 1;
+                         tabuleiro[i + k][j - 1] = 1;
+                    }
+                }
+            }
         }
         printf("\n");
     }
-
-    tabuleiro[0][0] = 3;
-    tabuleiro[0][1] = 3;
-    tabuleiro[0][2] = 3;
-
-    tabuleiro[2][0] = 3;
-    tabuleiro[3][1] = 3;
-    tabuleiro[4][2] = 3;
-
-    tabuleiro[7][4] = 3;
-    tabuleiro[8][3] = 3;
-    tabuleiro[9][2] = 3;
-
-    tabuleiro[9][9] = 3;
-    tabuleiro[8][9] = 3;
-    tabuleiro[7][9] = 3;
 
     for (int i = 0; i < 10; i++)
     {
@@ -77,11 +154,6 @@ int main()
         }
         printf("\n");
     }
-
-    // Nível Mestre - Habilidades Especiais com Matrizes
-    // Sugestão: Crie matrizes para representar habilidades especiais como cone, cruz, e octaedro.
-    // Sugestão: Utilize estruturas de repetição aninhadas para preencher as áreas afetadas por essas habilidades no tabuleiro.
-    // Sugestão: Exiba o tabuleiro com as áreas afetadas, utilizando 0 para áreas não afetadas e 1 para áreas atingidas.
 
     // Exemplos de exibição das habilidades:
     // Exemplo para habilidade em cone:
